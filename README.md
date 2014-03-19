@@ -18,7 +18,7 @@ Set of files in this repository helps to download your transactions. The process
 * Execute "ant" in the directory with these files
   * If you still use Windows, instead of running ant from command line, you can double click on ant.cmd
 * Insure it finishes with BUILD SUCCESSFUL
-* If there a more Actual pages with transactions to download, repeat the process from step #3
+* If there are more Actual pages with transactions to download, repeat the process from step #3
 
 All downloaded transactions will be in tab-delimited ics.txt file
 
