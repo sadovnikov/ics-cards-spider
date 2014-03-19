@@ -1,0 +1,44 @@
+<project name="all" default="convert">
+	
+	<property environment="env" />
+	
+	<property name="input.file" value="ics.html" />
+	<property name="temp.file" value="ics.xml" />
+	<property name="output.file" value="ics.csv" />
+	
+	<target name="convert" >
+	
+		<copy file="${input.file}" tofile="${temp.file}" />
+			
+		<replaceregexp file="${temp.file}" replace="">
+			<regexp pattern="&lt;!DOCTYPE (.*)&gt;"/>
+		</replaceregexp>
+		<replaceregexp file="${temp.file}" replace="&lt;html&gt;">
+			<regexp pattern="&lt;html(.*)&gt;"/>
+		</replaceregexp>		
+		<replaceregexp file="${temp.file}" replace="" byline="false">
+			<regexp pattern="&lt;head&gt;(.*)&lt;/head&gt;"/>
+		</replaceregexp>		
+				
+		<replace file="${temp.file}" token="&lt;br&gt;" value="&lt;br/&gt;" />
+		<replace file="${temp.file}" token="&amp;nbsp;" value=" " />
+		<replace file="${temp.file}" token="&amp;euml;" value="e" />
+		<replace file="${temp.file}" token="&amp;iuml;" value="i" />
+		<replace file="${temp.file}" token="&amp;oacute;" value="o" />
+		<replace file="${temp.file}" token="&lt;hr&gt;" value="&lt;hr/&gt;" />
+		
+		<replaceregexp file="${temp.file}" match="&lt;td&gt;(.*)&amp;(.*)" replace="&lt;td&gt;\1&amp;amp;\2" byline="true" />
+		
+		<xslt in="${temp.file}" out="${output.file}" 
+			style="icscards.xsl" force="true" />
+			
+		<concat destfile="ics.txt" append="true">
+    		<filelist dir="." files="${output.file}"/>
+  		</concat>
+  		
+  		<delete file="${temp.file}" />
+  		<delete file="${output.file}" />
+  		
+	</target>	
+
+</project>
