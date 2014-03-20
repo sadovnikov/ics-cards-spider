@@ -1,7 +1,7 @@
 ics-cards-spider
 ================
 
-Enables creation of CSV file with ICS Credit Cards transactions.
+Enables creation of tab-delimited file with ICS Credit Cards transactions.
 
 At least in The Netherlands, ICS Cards managers a large portion of credit cards. If you get your card from ABN AMRO bank, de Bijenkorf or possibly others - these cards will be from ICS Cards.
 
